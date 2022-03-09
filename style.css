@@ -1,0 +1,53 @@
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+*   {
+    margin: 0;
+    padding: 0;
+}
+
+#info{
+    width: 200px;
+    height: 80px;
+    background-color: #e5e7eb;
+    z-index: 10;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+}
+
+#childBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+#redLine{
+    background-color: #800000;
+    width: 60px;
+    height: 6px;
+    border-radius: 7px;
+}
+
+#blueLine{
+    background-color: #0048ff;
+    width: 60px;
+    height: 6px;
+    border-radius: 7px;
+}
+
+#selectBus{
+    position: absolute;
+    bottom: 94px;
+    right: 5px;
+    width: 200px;
+    height: 20px;
+    background-color: transparent;
+}
