@@ -24,7 +24,7 @@ function init(){
 
             iconLayout: 'default#image',
         iconImageHref: './myIcon.png',
-        iconImageSize: [40, 40],
+        iconImageSize: [54, 54],
         iconImageOffset: [-5, -38]
         })
 
@@ -63,23 +63,23 @@ function init(){
     }
 
 
-    fetch("https://ulasimapi.burulas.com.tr/api/NetworkInfo/VehiclesPosition?code=16/İ")
+    fetch("https://ulasimapi.burulas.com.tr/api/NetworkInfo/VehiclesPosition?code=3/İ")
     .then(response => response.json())
     .then(data => {
 
         let bus = data.data
-        // Direction: 1106
-        // LineCode: "3/İ"
-        // VehicleNo: 1137
-        // averageSpeed: 22.462342820179618
-        // currentLocation: {Lat: 40.20460167, Lng: 29.06312333}
-        // currentSpeed: 30.798082015751223
-        // detourRoute: 1.1414172960662121
-        // distanceToNextStation: 50.23364376445487
-        // lastGPSTime: "2022-03-09T23:36:06"
+        /* Direction: 1106
+         LineCode: "3/İ"
+         VehicleNo: 1137
+         averageSpeed: 22.462342820179618
+         currentLocation: {Lat: 40.20460167, Lng: 29.06312333}
+         currentSpeed: 30.798082015751223
+         detourRoute: 1.1414172960662121
+         distanceToNextStation: 50.23364376445487
+         lastGPSTime: "2022-03-09T23:36:06" */
 
         for (let item of bus) {
-            let loaction = { x:  item.currentLocation.Lat, y:  item.currentLocation.Lng, speed: item.currentSpeed , code: item.LineCode}
+            let loaction = { x:  item.currentLocation.Lat, y:  item.currentLocation.Lng, speed: item.averageSpeed , code: item.LineCode}
             otobusler.add(createBusMark(loaction))
         }
 
@@ -93,15 +93,17 @@ function init(){
     })
 
     setInterval(() => {
-        otobusler.removeAll();
-            fetch("https://ulasimapi.burulas.com.tr/api/NetworkInfo/VehiclesPosition?code=16/İ")
+            fetch("https://ulasimapi.burulas.com.tr/api/NetworkInfo/VehiclesPosition?code=3/İ")
             .then(response => response.json())
             .then(data => {
-
+                if (!data) return
                 let bus = data.data
-                
+                if (!bus) return
+
+                otobusler.removeAll();
+
                 for (let item of bus) {
-                    let loaction = { x:  item.currentLocation.Lat, y:  item.currentLocation.Lng, speed: item.currentSpeed , code: item.LineCode}
+                    let loaction = { x:  item.currentLocation.Lat, y:  item.currentLocation.Lng, speed: item.averageSpeed , code: item.LineCode}
                     otobusler.add(createBusMark(loaction))
                 }
 
